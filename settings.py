@@ -1,4 +1,4 @@
-pip install django-heroku
+pip3 install django-heroku
+pip3 install djangorestframework
 import django_heroku
 django_heroku.settings(locals())
-ALLOWED_HOSTS = ['0.0.0.0']
