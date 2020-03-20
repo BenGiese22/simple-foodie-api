@@ -35,10 +35,10 @@ def recipe_list(request):
         serializer = RecipeSerializer(recipes, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
-        serializer = RecipeSerializer(data=request.data)
+        serializer = RecipeSerializer(data=request.data, many=True)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED, safe=False)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT','DELETE'])
