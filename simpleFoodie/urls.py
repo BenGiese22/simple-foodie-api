@@ -24,5 +24,5 @@ router.register(r'recipes', views.RecipeViewSet)
 
 urlpatterns = [
     path('', include('recipes.urls')),
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
 ]
