@@ -32,7 +32,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 def recipe_list(request):
     if request.method == 'GET':
         recipes = Recipe.objects.all()
-        serializer = RecipeSerializer(recipes)
+        serializer = RecipeSerializer(recipes, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         serializer = RecipeSerializer(data=request.data)
