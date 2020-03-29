@@ -35,7 +35,7 @@ def recipe_list(request):
         serializer = RecipeSerializer(recipes, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
-        serializer = RecipeSerializer(data=request.data)
+        serializer = RecipeSerializer(data=request.data, many=True)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED, safe=False)
