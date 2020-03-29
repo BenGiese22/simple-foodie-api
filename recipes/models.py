@@ -10,10 +10,5 @@ class Recipe(models.Model):
     directions = models.CharField(max_length=4000)
     source = models.CharField(max_length=50)
     created_date = models.DateTimeField('date published')
-
-    def __str__(self):
-        return self.title
-
-    def was_published_recently(self):
-        return self.created_date >= timezone.now() - datetime.timedelta(days=1)
-        
+    class Meta:
+        unique_together = ['link', 'title']
