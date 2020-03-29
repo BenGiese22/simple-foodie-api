@@ -39,7 +39,7 @@ def recipe_list(request):
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED, safe=False)
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
 
 @api_view(['GET', 'PUT','DELETE'])
 def recipe_detail(request, recipe_id):
