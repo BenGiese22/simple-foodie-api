@@ -13,14 +13,29 @@ from rest_framework.response import Response
 from .models import Recipe
 from recipes.serializers import RecipeSerializer
 
+# def ingredients_search(request, query):
+#     recipes = Recipe.objects.filter(ingredients__icontains=query)
+#     serializer = RecipeSerializer(recipes, many=True)
+#     return JsonResponse(serializer.data, safe=False)
 
-# def index(request):
-#     latest_recipe_list = Recipe.objects.order_by('-created_date')[:5]
-#     context = {'latest_recipe_list': latest_recipe_list}
-#     return render(request, 'recipes/index.html', context)
+# def title_search(request, query):
+#     recipes = Recipe.objects.filter(title__icontains=query)
+#     serializer = RecipeSerializer(recipes, many=True)
+#     return JsonResponse(serializer.data, safe=False)
 
-def search(request, query):
-    recipes = Recipe.objects.filter(title__icontains=query)
+def search(request, field, query):
+    field = field.lower()
+    recipes = None
+    if field == 'title':
+        recipes = Recipe.objects.filter(title__icontains=query)
+    elif field == ingredients:
+        recipes = Recipe.objects.filter(ingredients__icontains=query)
+    elif field == directions:
+        recipes == Recipe.objects.filter(directions__icontains=query)
+    
+    if recipes is None:
+        return HttpReponseBadRequest'<h1>Invalid Search Field</h1>'
+    
     serializer = RecipeSerializer(recipes, many=True)
     return JsonResponse(serializer.data, safe=False)
 
