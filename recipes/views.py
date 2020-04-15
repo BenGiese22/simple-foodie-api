@@ -13,16 +13,6 @@ from rest_framework.response import Response
 from .models import Recipe
 from recipes.serializers import RecipeSerializer
 
-# def ingredients_search(request, query):
-#     recipes = Recipe.objects.filter(ingredients__icontains=query)
-#     serializer = RecipeSerializer(recipes, many=True)
-#     return JsonResponse(serializer.data, safe=False)
-
-# def title_search(request, query):
-#     recipes = Recipe.objects.filter(title__icontains=query)
-#     serializer = RecipeSerializer(recipes, many=True)
-#     return JsonResponse(serializer.data, safe=False)
-
 def search(request, field, query):
     field = field.lower()
     recipes = None
