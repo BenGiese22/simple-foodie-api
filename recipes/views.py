@@ -19,6 +19,11 @@ from recipes.serializers import RecipeSerializer
 #     context = {'latest_recipe_list': latest_recipe_list}
 #     return render(request, 'recipes/index.html', context)
 
+def search(request, query):
+    recipes = Recipe.objects.filter(title__icontains=query)
+    serializer = RecipeSerializer(recipes, many=True)
+    return JsonResponse(serializer.data, safe=False)
+
 def detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     return render(request, 'recipes/detail.html', {'recipe': recipe})
