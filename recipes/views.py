@@ -28,9 +28,9 @@ def search(request, field, query):
     recipes = None
     if field == 'title':
         recipes = Recipe.objects.filter(title__icontains=query)
-    elif field == ingredients:
+    elif field == 'ingredients':
         recipes = Recipe.objects.filter(ingredients__icontains=query)
-    elif field == directions:
+    elif field == 'directions':
         recipes == Recipe.objects.filter(directions__icontains=query)
     
     if recipes is None:
