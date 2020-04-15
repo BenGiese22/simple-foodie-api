@@ -34,7 +34,7 @@ def search(request, field, query):
         recipes == Recipe.objects.filter(directions__icontains=query)
     
     if recipes is None:
-        return HttpReponseBadRequest('<h1>Invalid Search Field</h1>')
+        return HttpResponseBadRequest('<h1>Invalid Search Field</h1>')
     
     serializer = RecipeSerializer(recipes, many=True)
     return JsonResponse(serializer.data, safe=False)
