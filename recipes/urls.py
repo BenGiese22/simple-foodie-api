@@ -4,6 +4,9 @@ from recipes import views
 app_name = 'recipes'
 
 urlpatterns = [
+    # Landing Page
+    path('', views.landing, name='landing'),
+
     # Detail View
     path('<int:recipe_id>/', views.detail, name='detail'),
 

@@ -13,6 +13,9 @@ from rest_framework.response import Response
 from .models import Recipe
 from recipes.serializers import RecipeSerializer
 
+def landing(request):
+    return render(request, 'recipes/landing.html')
+
 def search(request, field, query):
     field = field.lower()
     recipes = None
