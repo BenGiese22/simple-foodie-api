@@ -10,3 +10,5 @@ class Recipe(models.Model):
     directions = models.CharField(max_length=4000)
     source = models.CharField(max_length=50)
     created_date = models.DateTimeField('date published')
+    image = models.CharField(max_length=5000, blank=True)
+    total_prep_time = models.IntegerField(blank=True, null=True)
